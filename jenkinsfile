@@ -3,6 +3,6 @@ pipeline {
     dockerfile {
         label 'slave'
         args '-v /tmp:/tmp'
-    }
+               }
+        }
   }
-}
