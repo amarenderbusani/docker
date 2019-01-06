@@ -1,8 +1,7 @@
 pipeline {
-  agent {
-    dockerfile {
-        label 'slave'
-        args '-v /tmp:/tmp'
-               }
+    stage('Checkout code') {
+        steps {
+            checkout scm
         }
+    }
   }
