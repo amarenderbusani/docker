@@ -1,17 +1,9 @@
 pipeline {
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
-    }
-}
-agent {
-    // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+  agent {
     dockerfile {
         label 'slave'
         additionalBuildArgs  '--build-arg version=1.0.2'
         args '-v /tmp:/tmp'
     }
-   } 
-
+  }
+}
