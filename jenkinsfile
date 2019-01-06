@@ -7,11 +7,12 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("docker")
+agent {
+    // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+    dockerfile {
+        label 'slave'
+        additionalBuildArgs  '--build-arg version=1.0.2'
+        args '-v /tmp:/tmp'
     }
     
 }
