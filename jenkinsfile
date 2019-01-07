@@ -9,7 +9,7 @@ pipeline {
   stages {
   stage('Notify') {
   steps {
- sh "hostname;ls"
+ sh "hostname;ls;pwd"
  }
       }
       
