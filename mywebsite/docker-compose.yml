@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_HOST=parker-test.cj4g0mitk6iq.us-east-1.rds.amazonaws.com
+      - MYSQL_PORT=3306  # cannot change this port to other number
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE="parker"
+      - MYSQL_USER=parker
+      - MYSQL_PASSWORD='raju07577!'
+      - MYSQL_ROOT_PASSWORD='raju07577!'
+    volumes:
+      - /var/lib/mysql
+    ports:
+      - "3306:3306"
+  web:
+    image: nileshsutar/dockerizing-python-django-app
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: djangoserver
+    stdin_open: true
+    tty: true
+    volumes:
+        - .:/FileUpload
+    ports:
+        - "8000:8000"
+
